@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OlympicMedalistBoard.BLL;
 using OlympicMedalistBoard.DAL;
 
 namespace OlympicMedalistBoard;
@@ -18,6 +19,9 @@ public class Program
                 .AddDefaultUI();
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+
+        builder.Services.AddScoped<AthleteDAL>();
+        builder.Services.AddScoped<AthleteService>();
 
         var app = builder.Build();
 
