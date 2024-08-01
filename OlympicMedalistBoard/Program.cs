@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OlympicMedalistBoard.DAL;
-using OlympicMedalistBoard.BLL;
 
 namespace OlympicMedalistBoard;
 
@@ -17,13 +16,8 @@ public class Program
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<OlympicMedalistBoardDbContext>()
                 .AddDefaultUI();
-
-		//register DAL and BLL services
-		builder.Services.AddScoped<CountryDAL>();
-		builder.Services.AddScoped<CountryService>();
-
-		// Add services to the container.
-		builder.Services.AddControllersWithViews();
+        // Add services to the container.
+        builder.Services.AddControllersWithViews();
 
         var app = builder.Build();
 
