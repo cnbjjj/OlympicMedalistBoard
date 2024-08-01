@@ -1,9 +1,7 @@
 ﻿@model IEnumerable<OlympicMedalistBoard.Models.Medal>
 
 <h2>Medal List</h2>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -11,7 +9,7 @@
             <th>Sport</th>
             <th>Medal Type</th>
             <th>Date Awarded</th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -23,12 +21,15 @@
                 <td>@item.MedalType</td>
                 <td>@item.DateAwarded.ToShortDateString()</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.MedalID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.MedalID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.MedalID">Delete</a>
+                    <a class="btn btn-primary" href="@Url.Action("Edit", new { id = item.MedalID })">Edit</a>
+                    <a class="btn btn-info" href="@Url.Action("Details", new { id = item.MedalID })">Details</a>
+                    <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.MedalID })">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<a class="btn btn-success" href="@Url.Action("Create")">Create New</a>
+
 

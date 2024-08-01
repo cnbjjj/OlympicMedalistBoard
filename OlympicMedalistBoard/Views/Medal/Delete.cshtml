@@ -6,37 +6,29 @@
 <div>
     <h4>Medal</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            Athlete
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Athlete.Name
-        </dd>
-        <dt class="col-sm-2">
-            Sport
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Sport.SportName
-        </dd>
-        <dt class="col-sm-2">
-            Medal Type
-        </dt>
-        <dd class="col-sm-10">
-            @Model.MedalType
-        </dd>
-        <dt class="col-sm-2">
-            Date Awarded
-        </dt>
-        <dd class="col-sm-10">
-            @Model.DateAwarded
-        </dd>
+    <dl class="dl-horizontal">
+        <dt>Athlete</dt>
+        <dd>@Html.DisplayFor(model => model.Athlete.Name)</dd>
+
+        <dt>Sport</dt>
+        <dd>@Html.DisplayFor(model => model.Sport.SportName)</dd>
+
+        <dt>Medal Type</dt>
+        <dd>@Html.DisplayFor(model => model.MedalType)</dd>
+
+        <dt>Date Awarded</dt>
+        <dd>@Html.DisplayFor(model => model.DateAwarded)</dd>
     </dl>
 
-    <form asp-action="DeleteConfirmed">
-        <input type="hidden" asp-for="MedalID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.MedalID)
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
+
 

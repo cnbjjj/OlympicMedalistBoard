@@ -2,36 +2,33 @@
 
 <h2>Create Medal</h2>
 
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <hr />
-        <div class="form-group">
-            <label asp-for="AthleteID" class="control-label"></label>
-            <input asp-for="AthleteID" class="form-control" />
-            <span asp-validation-for="AthleteID" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="SportID" class="control-label"></label>
-            <input asp-for="SportID" class="form-control" />
-            <span asp-validation-for="SportID" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="MedalType" class="control-label"></label>
-            <input asp-for="MedalType" class="form-control" />
-            <span asp-validation-for="MedalType" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="DateAwarded" class="control-label"></label>
-            <input asp-for="DateAwarded" class="form-control" />
-            <span asp-validation-for="DateAwarded" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.AthleteID)
+        @Html.TextBoxFor(m => m.AthleteID, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AthleteID, "", new { @class = "text-danger" })
     </div>
-</form>
+    <div>
+        @Html.LabelFor(m => m.SportID)
+        @Html.TextBoxFor(m => m.SportID, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.SportID, "", new { @class = "text-danger" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.MedalType)
+        @Html.TextBoxFor(m => m.MedalType, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MedalType, "", new { @class = "text-danger" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.DateAwarded)
+        @Html.TextBoxFor(m => m.DateAwarded, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.DateAwarded, "", new { @class = "text-danger" })
+    </div>
+    <button class="btn btn-primary" type="submit">Create</button>
+}
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
 
