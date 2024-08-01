@@ -19,9 +19,16 @@
         <dd>@Html.DisplayFor(model => model.DateAwarded)</dd>
     </dl>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MedalID }) |
-    @Html.ActionLink("Back to List", "Index")
+<div class="form-actions no-color">
+    <form asp-action="Edit" method="get" style="display: inline;">
+        <input type="hidden" name="id" value="@Model.MedalID" />
+        <button type="submit">Edit</button>
+    </form>
+
+    <form asp-action="Index" method="get" style="display: inline;">
+        <button type="submit">Back to List</button>
+    </form>
 </div>
+
 
 

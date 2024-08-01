@@ -24,11 +24,16 @@
         @Html.TextBoxFor(m => m.DateAwarded, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.DateAwarded, "", new { @class = "text-danger" })
     </div>
-    <button class="btn btn-primary" type="submit">Create</button>
+
+    <div class="form-actions no-color">
+        <button class="btn btn-primary" type="submit">Create</button>
+
+        <form asp-action="Index" method="get" style="display: inline;">
+            <button type="submit" class="btn btn-secondary">Back to List</button>
+        </form>
+    </div>
 }
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 
