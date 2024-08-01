@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OlympicMedalistBoard.Models.Medal>
+
+<h2>Medal List</h2>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Athlete</th>
+            <th>Sport</th>
+            <th>Medal Type</th>
+            <th>Date Awarded</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Athlete.Name</td>
+                <td>@item.Sport.SportName</td>
+                <td>@item.MedalType</td>
+                <td>@item.DateAwarded.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MedalID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MedalID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MedalID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
