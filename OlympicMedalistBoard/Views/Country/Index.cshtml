@@ -1,0 +1,29 @@
+﻿@model List<Country>
+
+<h2>Countries</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Code</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var country in Model) {
+			<tr>
+				<td>@country.CountryID</td>
+				<td>@country.CountryName</td>
+				<td>@country.CountryCode</td>
+				<td>
+					<a class="btn btn-primary" href="@Url.Action("Update", new { id = country.CountryID})">Edit</a>
+					<a class="btn btn-danger" href="@Url.Action("Delete", new { id = country.CountryID})">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<a class="btn btn-success" href="@Url.Action("Create")">Create</a>
