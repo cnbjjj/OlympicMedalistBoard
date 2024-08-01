@@ -11,7 +11,6 @@ namespace OlympicMedalistBoard.Models
         public int CountryID { get; set; }
         public string CountryName { get; set; }
         public string CountryCode { get; set; }
-
         public ICollection<Athlete> Athletes { get; set; }
     }
 }

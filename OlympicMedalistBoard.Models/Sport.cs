@@ -10,7 +10,6 @@ namespace OlympicMedalistBoard.Models
     {
         public int SportID { get; set; }
         public string SportName { get; set; }
-
         public ICollection<Athlete> Athletes { get; set; }
         public ICollection<Medal> Medals { get; set; }
     }
