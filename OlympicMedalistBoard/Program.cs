@@ -22,6 +22,12 @@ public class Program
 
         builder.Services.AddScoped<AthleteDAL>();
         builder.Services.AddScoped<AthleteService>();
+        builder.Services.AddScoped<SportDAL>();
+        builder.Services.AddScoped<SportService>();
+        builder.Services.AddScoped<MedalDAL>();
+        builder.Services.AddScoped<MedalService>();
+        builder.Services.AddScoped<CountryDAL>();
+        builder.Services.AddScoped<CountryService>();
 
         var app = builder.Build();
 
