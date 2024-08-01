@@ -13,7 +13,7 @@ namespace OlympicMedalistBoard.Models
         public int SportID { get; set; }
         public string MedalType { get; set; }
         public DateTime DateAwarded { get; set; }
-        public Athlete Athlete { get; set; }
-        public Sport Sport { get; set; }
+        public Athlete? Athlete { get; set; }
+        public Sport? Sport { get; set; }
     }
 }

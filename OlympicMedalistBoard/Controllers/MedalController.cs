@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace OlympicMedalistBoard.Controllers
 {
-    [Authorize] 
+    //[Authorize] 
     public class MedalController : Controller
     {
         private readonly MedalService _medalService;
