@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Sport>
+
+@{
+    ViewData["Title"] = "Sports";
+}
+
+<h2>Sport</h2>
+
+<table class="table table-striped table-hover table-bordered table-">
+    <thead>
+        <th>Sport ID</th>
+        <th>Sport Name</th>
+    </thead>
+    <tbody>
+        @foreach(var sport in Model)
+        {
+            <tr>
+                <td>@sport.SportID</td>
+                <td>@sport.SportName</td>
+                <td>
+                    <a class="btn btn-primary" href="@Url.Action("Edit", new {IDataTokensMetadata = sport.SportID})">Edit</a>
+                    <a class="btn btn-danger" href="@Url.Action("Delete",new {IDataTokensMetadata = sport .SportName })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" href="@Url.Action("create")">Create new Sport</a>
