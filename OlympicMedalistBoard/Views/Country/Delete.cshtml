@@ -1,5 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model OlympicMedalistBoard.Models.Country
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete: @Model.CountryName</h3>
+
+@using (Html.BeginForm("ConfirmDelete", "Country", FormMethod.Post)) {
+	<input type="hidden" asp-for="CountryID" />
+	<button class="btn btn-primary" asp-action="Index">Back</button>
+	<button class="btn btn-danger" type="submit">Delete</button>
 }

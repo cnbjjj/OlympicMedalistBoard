@@ -1,5 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model OlympicMedalistBoard.Models.Country
+
+<h2>Update Country</h2>
+
+@using (Html.BeginForm()) {
+	<input type="hidden" asp-for="CountryID" />
+	<input type="hidden" asp-for="Athletes" />
+	<div>
+		@Html.LabelFor(m => m.CountryName)
+		@Html.TextBoxFor(m => m.CountryName)
+		@Html.ValidationMessageFor(m => m.CountryName, "", new { @class = "text-danger" })
+	</div>
+	<div>
+		@Html.LabelFor(m => m.CountryCode)
+		@Html.TextBoxFor(m => m.CountryCode)
+		@Html.ValidationMessageFor(m => m.CountryCode, "", new { @class = "text-danger" })
+	</div>
+	<button class="btn btn-primary" type="submit">Update</button>
 }
