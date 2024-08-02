@@ -14,30 +14,31 @@ namespace OlympicMedalistBoard.BLL
             _medalDAL = medalDAL;
         }
 
-        public async Task<List<Medal>> GetAllMedalsAsync()
+        public List<Medal> GetAllMedals()
         {
-            return await _medalDAL.GetAllMedalsAsync();
+            return _medalDAL.GetAllMedals();
         }
 
-        public async Task<Medal> GetMedalByIdAsync(int id)
+        public Medal GetMedalById(int id)
         {
-            return await _medalDAL.GetMedalByIdAsync(id);
+            return _medalDAL.GetMedalById(id);
         }
 
-        public async Task AddMedalAsync(Medal medal)
+        public void AddMedal(Medal medal)
         {
-            await _medalDAL.AddMedalAsync(medal);
+            _medalDAL.AddMedal(medal);
         }
 
-        public async Task UpdateMedalAsync(Medal medal)
+        public void UpdateMedal(Medal medal)
         {
-            await _medalDAL.UpdateMedalAsync(medal);
+            _medalDAL.UpdateMedal(medal);
         }
 
-        public async Task DeleteMedalAsync(int id)
+        public void DeleteMedal(int id)
         {
-            await _medalDAL.DeleteMedalAsync(id);
+            _medalDAL.DeleteMedal(id);
         }
     }
 }
+
 

@@ -15,15 +15,15 @@ namespace OlympicMedalistBoard.Controllers
             _medalService = medalService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var medals = await _medalService.GetAllMedalsAsync();
+            var medals = _medalService.GetAllMedals();
             return View(medals);
         }
 
-        public async Task<IActionResult> Details(int id)
+        public IActionResult Details(int id)
         {
-            var medal = await _medalService.GetMedalByIdAsync(id);
+            var medal = _medalService.GetMedalById(id);
             if (medal == null)
             {
                 return NotFound();
@@ -37,19 +37,19 @@ namespace OlympicMedalistBoard.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Medal medal)
+        public IActionResult Create(Medal medal)
         {
             if (ModelState.IsValid)
             {
-                await _medalService.AddMedalAsync(medal);
+                _medalService.AddMedal(medal);
                 return RedirectToAction("Index");
             }
             return View(medal);
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public IActionResult Edit(int id)
         {
-            var medal = await _medalService.GetMedalByIdAsync(id);
+            var medal = _medalService.GetMedalById(id);
             if (medal == null)
             {
                 return NotFound();
@@ -58,7 +58,7 @@ namespace OlympicMedalistBoard.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Medal medal)
+        public IActionResult Edit(int id, Medal medal)
         {
             if (id != medal.MedalID)
             {
@@ -67,15 +67,15 @@ namespace OlympicMedalistBoard.Controllers
 
             if (ModelState.IsValid)
             {
-                await _medalService.UpdateMedalAsync(medal);
+                _medalService.UpdateMedal(medal);
                 return RedirectToAction("Index");
             }
             return View(medal);
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            var medal = await _medalService.GetMedalByIdAsync(id);
+            var medal = _medalService.GetMedalById(id);
             if (medal == null)
             {
                 return NotFound();
@@ -85,11 +85,12 @@ namespace OlympicMedalistBoard.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            await _medalService.DeleteMedalAsync(id);
+            _medalService.DeleteMedal(id);
             return RedirectToAction(nameof(Index));
         }
     }
 }
+
 

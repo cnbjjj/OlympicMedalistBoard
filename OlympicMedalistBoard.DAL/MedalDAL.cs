@@ -14,38 +14,39 @@ namespace OlympicMedalistBoard.DAL
             _context = context;
         }
 
-        public async Task<List<Medal>> GetAllMedalsAsync()
+        public List<Medal> GetAllMedals()
         {
-            return await _context.Medals.Include(m => m.Athlete).Include(m => m.Sport).ToListAsync();
+            return _context.Medals.Include(m => m.Athlete).Include(m => m.Sport).ToList();
         }
 
-        public async Task<Medal> GetMedalByIdAsync(int id)
+        public Medal GetMedalById(int id)
         {
-            return await _context.Medals.Include(m => m.Athlete).Include(m => m.Sport)
-                .FirstOrDefaultAsync(m => m.MedalID == id);
+            return _context.Medals.Include(m => m.Athlete).Include(m => m.Sport)
+                .FirstOrDefault(m => m.MedalID == id);
         }
 
-        public async Task AddMedalAsync(Medal medal)
+        public void AddMedal(Medal medal)
         {
             _context.Medals.Add(medal);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
-        public async Task UpdateMedalAsync(Medal medal)
+        public void UpdateMedal(Medal medal)
         {
             _context.Medals.Update(medal);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
-        public async Task DeleteMedalAsync(int id)
+        public void DeleteMedal(int id)
         {
-            var medal = await _context.Medals.FindAsync(id);
+            var medal = _context.Medals.Find(id);
             if (medal != null)
             {
                 _context.Medals.Remove(medal);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
         }
     }
 }
+
 
