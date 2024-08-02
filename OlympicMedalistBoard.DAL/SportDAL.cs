@@ -28,6 +28,7 @@ namespace OlympicMedalistBoard.DAL
         public void UpdateSport(Sport sport)
         {
             _context.Sports.Update(sport);
+            _context.SaveChanges();
         }
 
         public void DeleteSport(int id)
