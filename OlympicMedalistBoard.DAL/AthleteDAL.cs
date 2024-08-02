@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OlympicMedalistBoard.Models;
 
 namespace OlympicMedalistBoard.DAL
@@ -17,7 +18,9 @@ namespace OlympicMedalistBoard.DAL
 
         public List<Athlete> GetAthletes()
         {
-            return _context.Athletes.ToList();
+            return _context.Athletes
+                .Include(a => a.Country)
+                .Include(a => a.Sport).ToList();
         }
 
         public void AddAthlete(Athlete athlete)
@@ -51,12 +54,18 @@ namespace OlympicMedalistBoard.DAL
 
         public List<Athlete> GetAthletesByCountryId(int id)
         {
-            return _context.Athletes.Where(a => a.CountryID == id).ToList();
+            return _context.Athletes
+                .Include(a => a.Country)
+                .Include(a => a.Sport)
+                .Where(a => a.CountryID == id).ToList();
         }
 
         public List<Athlete> GetAthletesBySportId(int id)
         {
-            return _context.Athletes.Where(a => a.SportID == id).ToList();
+            return _context.Athletes
+                .Include(a => a.Country)
+                .Include(a => a.Sport)
+                .Where(a => a.SportID == id).ToList();
         }
 
     }

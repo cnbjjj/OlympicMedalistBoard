@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
 }
 
+<a href="@Url.Action("Create")" class="btn btn-success bi bi-plus-lg">Create</a>
+
 <table class="table">
     <tr>
         <th>
@@ -29,14 +31,13 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Country)
+                @Html.DisplayFor(modelItem => item.Country.CountryName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sport)
+                @Html.DisplayFor(modelItem => item.Sport.SportName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.AthleteID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AthleteID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.AthleteID })
             </td>
         </tr>

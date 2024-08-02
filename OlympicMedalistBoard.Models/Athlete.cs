@@ -13,8 +13,8 @@ namespace OlympicMedalistBoard.Models
         public int CountryID { get; set; }
         public int SportID { get; set; }
         public DateTime Birthdate { get; set; }
-        public Country Country { get; set; }
-        public Sport Sport { get; set; }
-        public ICollection<Medal> Medals { get; set; }
+        public Country? Country { get; set; }
+        public Sport? Sport { get; set; }
+        public ICollection<Medal>? Medals { get; set; }
     }
 }

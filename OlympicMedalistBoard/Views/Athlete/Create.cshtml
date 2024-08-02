@@ -1,0 +1,26 @@
+﻿@model Athlete
+
+@{
+    ViewData["Title"] = "Add Athlete";
+    var FormView = new
+    {
+        FormData = new
+        {
+            Name = new { type = "text", value = "" },
+            CountryID = new { type = "dropdown", value = new SelectList(ViewBag.Countries, "CountryID", "CountryName") },
+            SportID = new { type = "dropdown", value = new SelectList(ViewBag.Sports, "SportID", "SportName") },
+            Birthdate = new { type = "date", value = "" }
+        },
+        Btn = "Add"
+    };
+}
+
+<h3 class="my-5">@ViewData["Title"]</h3>
+
+<partial name="_FormViewForModels" model="FormView" />
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
