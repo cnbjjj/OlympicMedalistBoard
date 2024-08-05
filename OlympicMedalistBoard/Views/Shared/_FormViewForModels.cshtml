@@ -22,7 +22,7 @@
 
 *@
 <div class="col-5">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm(FormMethod.Post,new { enctype = "multipart/form-data" }))
     {
         <partial name="_Form" model="@Model.FormData" />
         <partial name="_FormBtn" model="@Model.Btn" />

@@ -9,11 +9,13 @@
             Name = new { type = "text", value = "" },
             CountryID = new { type = "dropdown", value = new SelectList(ViewBag.Countries, "CountryID", "CountryName") },
             SportID = new { type = "dropdown", value = new SelectList(ViewBag.Sports, "SportID", "SportName") },
-            Birthdate = new { type = "date", value = "" }
+            Birthdate = new { type = "date", value = "" },
+            Photo = new { type = "file", value = "", require = false}
         },
         Btn = "Add"
     };
 }
+<partial name="_AthleteStyle" />
 
 <h3 class="my-5">@ViewData["Title"]</h3>
 

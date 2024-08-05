@@ -1,45 +1,61 @@
 ﻿@model IEnumerable<Athlete>
 
 @{
-    ViewBag.Title = "Index";
+    ViewData["Title"] = "Athletes";
 }
+<partial name="_AthleteStyle" />
 
-<a href="@Url.Action("Create")" class="btn btn-success bi bi-plus-lg">Create</a>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AthleteID)
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sport)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AthleteID)
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country.CountryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sport.SportName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AthleteID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AthleteID })
-            </td>
+<div class="d-flex justify-content-between align-content-center align-items-center">
+    <h3 class="my-5">@ViewData["Title"]</h3>
+    <a href="@Url.Action("Create")" class="btn btn-success sbtn">New</a>
+</div>
+<table class="table ps-0">
+    <thead>
+        <tr class="p-3 d-flex mb-2 align-items-center bg-light">
+            <th>
+                <b>@Html.DisplayNameFor(model => model.AthleteID)</b>
+            </th>
+            <th>
+                <b>@Html.DisplayNameFor(model => model.Name)</b>
+            </th>
+            <th>
+                <b>@Html.DisplayNameFor(model => model.Birthdate)</b>
+            </th>
+            <th>
+                <b>@Html.DisplayNameFor(model => model.Country)</b>
+            </th>
+            <th>
+                <b>@Html.DisplayNameFor(model => model.Sport)</b>
+            </th>
+            <th>
+                <b>Actions</b>
+            </th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="p-3 d-flex align-items-center mb-2">
+                <td>
+                    <b>#@item.AthleteID</b>
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Birthdate.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @item.Country.CountryName
+                </td>
+                <td>
+                    @item.Sport.SportName
+                </td>
+                <td class="btn-group">
+                    <a href="@Url.Action("Edit",new{id=@item.AthleteID})" class="btn btn-success bi bi-pencil"></a>
+                    <a href="@Url.Action("Delete",new{id=@item.AthleteID})" class="btn btn-danger bi bi-trash3"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
