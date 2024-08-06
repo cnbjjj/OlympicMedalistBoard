@@ -165,7 +165,7 @@ th:first-child {
     justify-content: center;
 
     .btn {
-        max-width: min(100%, 100px);
+        max-width: min(100%, 60px);
     }
 }
 
@@ -183,6 +183,6 @@ th:first-child {
             width:100%;
     }
     &:hover {
-        background-color: rgba(var(--bs-light-rgb), 0.5);
+        background-color: rgba(var(--bs-light-rgb), 1);
     }
 }

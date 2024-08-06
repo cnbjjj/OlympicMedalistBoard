@@ -66,7 +66,21 @@
         }
         else if (type== "file")
         {
-            <div class="col-3 form-photo position-relative" role="button">
+            <script>
+                const openFile = () => {
+                    const fileInput = document.querySelector("input[type='file']");
+                    fileInput.onchange = (evt) => {
+                        var reader = new FileReader();
+                        reader.onload = function () {
+                            var img = document.querySelector('.form-photo img');
+                            img.src = reader.result;
+                        };
+                        reader.readAsDataURL(evt.target.files[0]);
+                    };
+                    fileInput.click();
+                };
+            </script>
+            <div class="col-3 form-photo position-relative border border-2 border-light p-1" role="button">
                 @if(value!=""){
                     <img src="@value" alt="" class="w-100" onclick="openFile();" />
                 }else{
