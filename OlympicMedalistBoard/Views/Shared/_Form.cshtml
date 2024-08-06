@@ -66,11 +66,19 @@
         }
         else if (type== "file")
         {
+            <div class="col-3 form-photo position-relative" role="button">
+                @if(value!=""){
+                    <img src="@value" alt="" class="w-100" onclick="openFile();" />
+                }else{
+                    <img src="~/img/Athlete.jpg" alt="" class="w-100" onclick="openFile();" />
+                }
+            </div>
             <input type="file"
                 id="@PropName"
                 name="@PropName"
-                   class="form-control"
-                   data-val="@require.ToString().ToLower()" 
+                accept="image/*"
+                class="form-control d-none"
+                data-val="@require.ToString().ToLower()" 
                 data-val-required="@warningString" @requireString />
         }
         else

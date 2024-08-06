@@ -168,3 +168,21 @@ th:first-child {
         max-width: min(100%, 100px);
     }
 }
+
+.photo {
+    width:120px;
+    img{
+           width:100%;
+    }
+}
+
+.form-photo {
+    color: var(--bs-yellow);
+    transition: all 0.2s ease-in-out;
+    img{
+            width:100%;
+    }
+    &:hover {
+        background-color: rgba(var(--bs-light-rgb), 0.5);
+    }
+}

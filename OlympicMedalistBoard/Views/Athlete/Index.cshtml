@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Athlete>
+﻿@model IEnumerable<AthleteViewModel>
 
 @{
     ViewData["Title"] = "Athletes";
@@ -39,8 +39,11 @@
                 <td>
                     <b>#@item.AthleteID</b>
                 </td>
-                <td>
-                    @item.Name
+                <td class="d-flex justify-content-center">
+                    <div class="photo">
+                        <img src="@item.PhotoPath" alt="@item.Name" />
+                        <div>@item.Name</div>
+                    </div>
                 </td>
                 <td>
                     @item.Birthdate.ToString("dd/MM/yyyy")

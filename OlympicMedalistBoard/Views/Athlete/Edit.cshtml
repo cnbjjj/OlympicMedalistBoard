@@ -1,4 +1,4 @@
-﻿@model Athlete
+﻿@model AthleteViewModel
 
 @{
     ViewData["Title"] = "Edit Athlete";
@@ -6,10 +6,12 @@
     {
         FormData = new
         {
+            AthleteID = new { type = "hidden", value = Model.AthleteID },
             Name = new { type = "text", value = Model.Name },
             CountryID = new { type = "dropdown", value = new SelectList(ViewBag.Countries, "CountryID", "CountryName", Model.CountryID) },
             SportID = new { type = "dropdown", value = new SelectList(ViewBag.Sports, "SportID", "SportName", Model.SportID) },
-            Birthdate = new { type = "date", value = Model.Birthdate.ToString("yyyy-MM-dd") }
+            Birthdate = new { type = "date", value = Model.Birthdate.ToString("yyyy-MM-dd") },
+            Photo = new { type = "file", value = Model.PhotoPath, require = false }
         },
         Btn = "Edit"
     };
@@ -20,7 +22,10 @@
     <h3 class="my-5">@ViewData["Title"]</h3>
 </div>
 
-<partial name="_FormViewForModels" model="FormView" />
+<div class="d-flex">
+    <partial name="_FormViewForModels" model="FormView" />
+</div>
+
 
 @section Scripts {
     @{

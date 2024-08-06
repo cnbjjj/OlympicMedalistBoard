@@ -23,16 +23,18 @@ namespace OlympicMedalistBoard.DAL
                 .Include(a => a.Sport).ToList();
         }
 
-        public void AddAthlete(Athlete athlete)
+        public Athlete AddAthlete(Athlete athlete)
         {
             _context.Athletes.Add(athlete);
             _context.SaveChanges();
+            return athlete;
         }
 
-        public void UpdateAthlete(Athlete athlete)
+        public Athlete UpdateAthlete(Athlete athlete)
         {
             _context.Athletes.Update(athlete);
             _context.SaveChanges();
+            return athlete;
         }
 
         public void DeleteAthlete(Athlete athlete)

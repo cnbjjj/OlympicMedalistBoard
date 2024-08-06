@@ -21,14 +21,14 @@ namespace OlympicMedalistBoard.BLL
             return _athleteDAL.GetAthletes();
         }
 
-        public void AddAthlete(Athlete athlete)
+        public Athlete AddAthlete(Athlete athlete)
         {
-            _athleteDAL.AddAthlete(athlete);
+            return _athleteDAL.AddAthlete(athlete);
         }
 
-        public void UpdateAthlete(Athlete athlete)
+        public Athlete UpdateAthlete(Athlete athlete)
         {
-            _athleteDAL.UpdateAthlete(athlete);
+            return _athleteDAL.UpdateAthlete(athlete);
         }
 
         public void DeleteAthlete(Athlete athlete)
