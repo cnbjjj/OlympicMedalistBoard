@@ -21,8 +21,8 @@
         }
 
 *@
-<div class="col-5">
-    @using (Html.BeginForm(FormMethod.Post,new { enctype = "multipart/form-data" }))
+<div class="d-flex justify-content-center w-100 ">
+    @using (Html.BeginForm(FormMethod.Post,new { enctype = "multipart/form-data", @class = "w-50"}))
     {
         <partial name="_Form" model="@Model.FormData" />
         <partial name="_FormBtn" model="@Model.Btn" />

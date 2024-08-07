@@ -5,9 +5,9 @@
 }
 <partial name="_AthleteStyle" />
 
-<div class="d-flex justify-content-between align-content-center align-items-center">
-    <h3 class="my-5">@ViewData["Title"]</h3>
-    <a href="@Url.Action("Create")" class="btn btn-success sbtn">New</a>
+<div class="d-flex d-flex justify-content-center align-items-center position-relative pb-4" style="margin:0 0 40px 0">
+    <h3 class="my-4 text-warning">@ViewData["Title"]</h3>
+    <a href="@Url.Action("Create")" class="btn btn-outline-success position-absolute" style="bottom:-20px;"> + </a>
 </div>
 <table class="table ps-0">
     <thead>
@@ -55,8 +55,8 @@
                     @item.Sport.SportName
                 </td>
                 <td class="btn-group">
-                    <a href="@Url.Action("Edit",new{id=@item.AthleteID})" class="btn btn-success bi bi-pencil"></a>
-                    <a href="@Url.Action("Delete",new{id=@item.AthleteID})" class="btn btn-danger bi bi-trash3"></a>
+                    <a href="@Url.Action("Edit",new{id=@item.AthleteID})" class="btn btn-outline-success bi bi-pencil"></a>
+                    <a href="@Url.Action("Delete",new{id=@item.AthleteID})" class="btn btn-outline-danger bi bi-trash3"></a>
                 </td>
             </tr>
         }

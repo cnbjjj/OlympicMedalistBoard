@@ -66,34 +66,36 @@
         }
         else if (type== "file")
         {
-            <script>
-                const openFile = () => {
-                    const fileInput = document.querySelector("input[type='file']");
-                    fileInput.onchange = (evt) => {
-                        var reader = new FileReader();
-                        reader.onload = function () {
-                            var img = document.querySelector('.form-photo img');
-                            img.src = reader.result;
+            <div class="d-flex justify-content-center">
+                <script>
+                    const openFile = () => {
+                        const fileInput = document.querySelector("input[type='file']");
+                        fileInput.onchange = (evt) => {
+                            var reader = new FileReader();
+                            reader.onload = function () {
+                                var img = document.querySelector('.form-photo img');
+                                img.src = reader.result;
+                            };
+                            reader.readAsDataURL(evt.target.files[0]);
                         };
-                        reader.readAsDataURL(evt.target.files[0]);
+                        fileInput.click();
                     };
-                    fileInput.click();
-                };
-            </script>
-            <div class="col-3 form-photo position-relative border border-2 border-light p-1" role="button">
-                @if(value!=""){
-                    <img src="@value" alt="" class="w-100" onclick="openFile();" />
-                }else{
-                    <img src="~/img/Athlete.jpg" alt="" class="w-100" onclick="openFile();" />
-                }
+                </script>
+                <div class="col-3 form-photo position-relative border border-2 border-light p-1" role="button">
+                    @if(value!=""){
+                        <img src="@value" alt="" class="w-100" onclick="openFile();" />
+                    }else{
+                        <img src="~/img/Athlete.jpg" alt="" class="w-100" onclick="openFile();" />
+                    }
+                </div>
+                <input type="file"
+                    id="@PropName"
+                    name="@PropName"
+                    accept="image/*"
+                    class="form-control d-none"
+                    data-val="@require.ToString().ToLower()" 
+                    data-val-required="@warningString" @requireString />
             </div>
-            <input type="file"
-                id="@PropName"
-                name="@PropName"
-                accept="image/*"
-                class="form-control d-none"
-                data-val="@require.ToString().ToLower()" 
-                data-val-required="@warningString" @requireString />
         }
         else
         {

@@ -1,25 +1,29 @@
 ﻿@model Athlete
 
 @{
-    ViewData["Title"] = "Add Athlete";
+    ViewData["Title"] = "New Athlete";
     var FormView = new
     {
         FormData = new
         {
+            Photo = new { type = "file", value = "", require = false },
             Name = new { type = "text", value = "" },
             CountryID = new { type = "dropdown", value = new SelectList(ViewBag.Countries, "CountryID", "CountryName") },
             SportID = new { type = "dropdown", value = new SelectList(ViewBag.Sports, "SportID", "SportName") },
             Birthdate = new { type = "date", value = "" },
-            Photo = new { type = "file", value = "", require = false}
         },
         Btn = "Add"
     };
 }
 <partial name="_AthleteStyle" />
 
-<h3 class="my-5">@ViewData["Title"]</h3>
+<div class="d-flex d-flex justify-content-center align-items-center pb-4">
+    <h3 class="my-4 text-warning">@ViewData["Title"]</h3>
+</div>
 
-<partial name="_FormViewForModels" model="FormView" />
+<div class="pb-5">
+    <partial name="_FormViewForModels" model="FormView" />
+</div>
 
 @section Scripts {
     @{

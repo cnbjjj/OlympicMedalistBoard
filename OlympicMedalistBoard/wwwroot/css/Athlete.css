@@ -30,6 +30,7 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 200;
     font-style: normal;
+    background-color: #fffffa;
 }
 
 table {
@@ -135,7 +136,7 @@ tbody tr {
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        background-color: rgba(var(--bs-light-rgb), 0.5);
+        background-color: rgba(var(--bs-white-rgb), 0.8);
     }
 
     &.selected {}
@@ -167,22 +168,136 @@ th:first-child {
     .btn {
         max-width: min(100%, 60px);
     }
+
 }
 
 .photo {
-    width:120px;
-    img{
-           width:100%;
+    width: 120px;
+
+    img {
+        width: 100%;
     }
+
 }
 
 .form-photo {
     color: var(--bs-yellow);
     transition: all 0.2s ease-in-out;
-    img{
-            width:100%;
+
+    img {
+        width: 100%;
     }
+
     &:hover {
-        background-color: rgba(var(--bs-light-rgb), 1);
+        background-color: rgba(var(--bs-light-rgb), 0.8);
     }
+
+}
+
+
+
+header {
+    margin-top: 25px;
+}
+
+a.navbar-brand {
+    display: block;
+    height: 120px;
+    line-height: 120px;
+    padding: 0 20px;
+    margin: 0;
+    min-width: 100%;
+    width: 240px;
+    text-align: center;
+}
+
+.navbar-brand img {
+    width: 160px;
+    background-color: #fffffa;
+}
+
+.nav-item.dropdown {
+    width: 18%;
+}
+
+.nav-link.dropdown-toggle {
+    margin: 0;
+    padding: 0 20px;
+    height: 120px;
+    line-height: 120px;
+    border-bottom: 2px solid;
+    width: 200px;
+    text-align: center;
+    font-weight: 500;
+}
+
+#MedalDropdown {
+    border-color: var(--bs-info);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        color: white;
+        background-color: rgba(var(--bs-info-rgb),0.2);
+    }
+}
+ul[aria-labelledby="MedalDropdown"] .dropdown-item:focus,
+ul[aria-labelledby="MedalDropdown"] .dropdown-item:hover {
+    color: white !important;
+    background-color: rgba(var(--bs-info-rgb),0.2);
+}
+
+#AthleteDropdown {
+    border-color: var(--bs-warning);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        color: white;
+        background-color: rgba(var(--bs-warning-rgb),0.2);
+    }
+}
+ul[aria-labelledby="AthleteDropdown"] .dropdown-item:focus,
+ul[aria-labelledby="AthleteDropdown"] .dropdown-item:hover {
+    color: white !important;
+    background-color: rgba(var(--bs-warning-rgb),0.2);
+}
+
+#SportDropdown {
+    border-color: var(--bs-success);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        color: white;
+        background-color: rgba(var(--bs-success-rgb),0.2);
+    }
+}
+ul[aria-labelledby="SportDropdown"] .dropdown-item:focus,
+ul[aria-labelledby="SportDropdown"] .dropdown-item:hover {
+    color: white !important;
+    background-color: rgba(var(--bs-success-rgb),0.2);
+}
+
+#CountryDropdown {
+    border-color: var(--bs-danger);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        color: white;
+        background-color: rgba(var(--bs-danger-rgb),0.1);
+    }
+}
+ul[aria-labelledby="CountryDropdown"] .dropdown-item:focus,
+ul[aria-labelledby="CountryDropdown"] .dropdown-item:hover {
+    color: white !important;
+    background-color: rgba(var(--bs-danger-rgb),0.1);
+}
+
+.dropdown-menu {
+    width: 100%;
+    background: none;
+    border: 0;
+    padding: 20px;
+}
+
+.form-control {
+    background: none;
+}
+
+.form-label[for="Photo"] {
+    display: none;
 }
