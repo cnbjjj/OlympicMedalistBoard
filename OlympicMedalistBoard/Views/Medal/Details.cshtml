@@ -1,10 +1,14 @@
 ﻿@model OlympicMedalistBoard.Models.Medal
 
-<h2>Medal Details</h2>
+@{
+    ViewData["Title"] = "Details for Medals";
+}
+
+<div class="d-flex d-flex justify-content-center align-items-center pb-4">
+    <h3 class="my-4 text-info">@ViewData["Title"]</h3>
+</div>
 
 <div>
-    <h4>Medal</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>Athlete</dt>
         <dd>@Html.DisplayFor(model => model.Athlete.Name)</dd>

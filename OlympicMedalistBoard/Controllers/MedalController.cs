@@ -96,7 +96,6 @@ namespace OlympicMedalistBoard.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             _medalService.DeleteMedal(id);
