@@ -19,12 +19,13 @@ public class HomeController : Controller
 
 	public IActionResult Index() {
 		var countryMedalData = _context.Countries
-			.Select(c => new HomeViewModel {
-				CountryName = c.CountryName,
-				GoldMedalCount = c.Athletes.SelectMany(a => a.Medals).Count(m => m.MedalType == "Gold"),
-				SilverMedalCount = c.Athletes.SelectMany(a => a.Medals).Count(m => m.MedalType == "Silver"),
-				BronzeMedalCount = c.Athletes.SelectMany(a => a.Medals).Count(m => m.MedalType == "Bronze"),
-                TotalMedalCount = c.Athletes.SelectMany(a => a.Medals).Count()
+			.Select(country => new HomeViewModel {
+				CountryName = country.CountryName,
+                CountryCode = country.CountryCode,
+				GoldMedalCount = country.Athletes.SelectMany(a => a.Medals).Count(m => m.MedalType == "Gold"),
+				SilverMedalCount = country.Athletes.SelectMany(a => a.Medals).Count(m => m.MedalType == "Silver"),
+				BronzeMedalCount = country.Athletes.SelectMany(a => a.Medals).Count(m => m.MedalType == "Bronze"),
+                TotalMedalCount = country.Athletes.SelectMany(a => a.Medals).Count()
             }).ToList();
 
 		return View(countryMedalData);

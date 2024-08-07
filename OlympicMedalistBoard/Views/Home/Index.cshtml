@@ -14,6 +14,7 @@
     <tbody>
         @foreach (var country in Model) {
             <tr>
+                <td><img src="https://flagsapi.com/@country.CountryCode/flat/32.png"></td>
                 <td>@country.CountryName</td>
                 <td>@country.GoldMedalCount</td>
                 <td>@country.SilverMedalCount</td>
