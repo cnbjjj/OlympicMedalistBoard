@@ -6,7 +6,7 @@
 {
     <div>
         @Html.LabelFor(m => m.AthleteID)
-        @Html.TextBoxFor(m => m.AthleteID, new { @class = "form-control", type = "dropdown" })       
+        @Html.DropDownListFor(m => m.AthleteID, new SelectList(ViewBag.Athletes, "AthleteID", "Name"), "Select an Athlete", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.AthleteID, "", new { @class = "text-danger" })
     </div>
     <div>
@@ -16,7 +16,7 @@
     </div>
     <div>
         @Html.LabelFor(m => m.MedalType)
-        @Html.TextBoxFor(m => m.MedalType, new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.MedalType, new SelectList(new[] { "Gold", "Silver", "Brown" }), "Select a Medal", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.MedalType, "", new { @class = "text-danger" })
     </div>
     <div>
