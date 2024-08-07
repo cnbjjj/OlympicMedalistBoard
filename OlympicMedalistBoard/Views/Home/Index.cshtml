@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<OlympicMedalistBoard.Models.HomeViewModel>
 
-<h2>Medal Counts by Country</h2>
-<table class="table">
+<div class="d-flex d-flex justify-content-center align-items-center position-relative pb-4">
+    <h3 class="my-4">Medal List</h3>
+</div>
+
+<table class="table ps-0">
     <thead>
-        <tr>
+        <tr class="p-3 d-flex mb-2 align-items-center bg-light">
             <th></th>
             <th>Country</th>
             <th>Gold Medals</th>
@@ -14,7 +17,7 @@
     </thead>
     <tbody>
         @foreach (var country in Model) {
-            <tr>
+            <tr class="p-3 d-flex align-items-center mb-2">
                 <td><img src="https://flagsapi.com/@country.CountryCode/flat/32.png"></td>
                 <td>@country.CountryName</td>
                 <td>@country.GoldMedalCount</td>
