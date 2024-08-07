@@ -23,7 +23,7 @@
         </div>
         <div>
             @Html.LabelFor(m => m.MedalType)
-            @Html.DropDownListFor(m => m.MedalType, new SelectList(new[] { "Gold", "Silver", "Brown" }), "Select a Medal", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.MedalType, new SelectList(new[] { "Gold", "Silver", "Bronze" }), "Select a Medal", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.MedalType, "", new { @class = "text-danger" })
         </div>
         <div>
