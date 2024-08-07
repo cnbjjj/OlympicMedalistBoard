@@ -1,0 +1,14 @@
+﻿@model OlympicMedalistBoard.Models.Sport;
+
+<h2>Edit Sport</h2>
+
+@using (Html.BeginForm("Edit", "Sport", FormMethod.Post))
+{
+    <input type="hidden" asp-for="SportID" />
+    <div>
+        @Html.LabelFor(m => m.SportName)
+        @Html.TextBoxFor(m => m.SportName)
+        @Html.ValidationMessageFor(m => m.SportName, "", new { @class = "text-danger" })
+    </div>
+    <button class="btn btn-primary" type="submit">Update</button>
+}
