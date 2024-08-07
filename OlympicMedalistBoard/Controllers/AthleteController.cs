@@ -10,6 +10,7 @@ namespace OlympicMedalistBoard.Controllers
         private readonly SportService _sportService;
         private readonly CountryService _countryService;
         private readonly AthleteService _athleteService;
+        private static string FILE_PATH = "";
         public AthleteController(AthleteService athleteService, SportService sportService, CountryService countryService, MedalService medalService)
         {
             _athleteService = athleteService;
@@ -29,7 +30,7 @@ namespace OlympicMedalistBoard.Controllers
                 Birthdate = a.Birthdate,
                 Country = a.Country,
                 Sport = a.Sport,
-                PhotoPath = GetPhotoPath(a.AthleteID, a.Name)
+                PhotoPath = GetPhotoPath(a)
             }).ToList();
 
             return View(athleteViewModels);
@@ -37,19 +38,18 @@ namespace OlympicMedalistBoard.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.WebPath =
             ViewBag.Sports = _sportService.GetSports();
             ViewBag.Countries = _countryService.GetCountries();
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Athlete athlete, IFormFile photo)
+        public IActionResult Create(Athlete athlete, IFormFile? photo)
         {
             if (ModelState.IsValid)
             {
                 Athlete newAthlete = _athleteService.AddAthlete(athlete);
-                Upload(photo, $"{newAthlete.AthleteID}-{newAthlete.Name}.jpg");
+                Upload(photo, newAthlete);
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Invalid data");
@@ -72,18 +72,18 @@ namespace OlympicMedalistBoard.Controllers
                 Birthdate = athlete.Birthdate,
                 Country = athlete.Country,
                 Sport = athlete.Sport,
-                PhotoPath = GetPhotoPath(athlete.AthleteID, athlete.Name)
+                PhotoPath = GetPhotoPath(athlete)
             };
             return View(avm);
         }
 
         [HttpPost]
-        public IActionResult Edit(Athlete athlete, IFormFile photo)
+        public IActionResult Edit(Athlete athlete, IFormFile? photo)
         {
             if (ModelState.IsValid)
             {
                 Athlete newAthlete = _athleteService.UpdateAthlete(athlete);
-                Upload(photo, $"{newAthlete.AthleteID}-{newAthlete.Name}.jpg");
+                Upload(photo, newAthlete);
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Invalid data");
@@ -97,19 +97,34 @@ namespace OlympicMedalistBoard.Controllers
             var athlete = _athleteService.GetAthleteById(id);
             if (athlete != null)
             {
+                AthleteViewModel viewModel = new AthleteViewModel();
+                viewModel.Name = athlete.Name;
+                viewModel.AthleteID = athlete.AthleteID;
+                viewModel.PhotoPath = GetPhotoPath(athlete);
+                return View(viewModel);
+            }
+            ModelState.AddModelError("", "Athlete not found");
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Athlete athlete)
+        {
+            if (athlete != null)
+            {
                 _athleteService.DeleteAthlete(athlete);
-                RemovePhoto(athlete.AthleteID,athlete.Name);
+                RemovePhoto(athlete);
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Athlete not found");
             return RedirectToAction("Index");
         }
 
-        private string Upload(IFormFile file, string name)
+        private static string Upload(IFormFile file, Athlete athlete)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", name);
             if (file != null && file.Length > 0)
             {
+                var path = GetPhotoUploadPath(athlete);
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     file.CopyTo(stream);
@@ -119,20 +134,23 @@ namespace OlympicMedalistBoard.Controllers
             return string.Empty;
         }
 
-        private static void RemovePhoto(int athleteId, string name)
+        private static void RemovePhoto(Athlete athlete)
         {
-            var photo = $"{athleteId}-{name}.jpg";
-            var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", photo);
-            System.IO.File.Delete(photoPath);
+            System.IO.File.Delete(GetPhotoUploadPath(athlete));
         }
 
-        private static string GetPhotoPath(int athleteId, string name)
-        {   
-            var photo = $"{athleteId}-{name}.jpg";
-            var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", photo);
+        private static string GetPhotoUploadPath(Athlete athlete)
+        {
+            return Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", GetPhotoFileName(athlete));
+        }
+
+        public static string GetPhotoPath(Athlete athlete)
+        {
+            var photo = GetPhotoFileName(athlete);
+            var photoPath = GetPhotoUploadPath(athlete);
             if (System.IO.File.Exists(photoPath))
             {
-                return $"/img/{photo}";
+                return $"/img/{photo}?{new Random().NextDouble()}";
             }
             else
             {
@@ -141,5 +159,9 @@ namespace OlympicMedalistBoard.Controllers
             }
         }
 
+        public static string GetPhotoFileName(Athlete athlete)
+        {
+            return $"{athlete.AthleteID}-{athlete.Name}.jpg";
+        }
     }
 }
