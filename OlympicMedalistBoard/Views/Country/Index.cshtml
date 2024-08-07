@@ -5,7 +5,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>ID</th>
+			<th></th>
 			<th>Name</th>
 			<th>Code</th>
 			<th>Actions</th>
@@ -14,7 +14,7 @@
 	<tbody>
 		@foreach (var country in Model) {
 			<tr>
-				<td>@country.CountryID</td>
+				<td><img src="https://flagsapi.com/@country.CountryCode/flat/32.png"></td>
 				<td>@country.CountryName</td>
 				<td>@country.CountryCode</td>
 				<td>

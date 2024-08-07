@@ -6,22 +6,22 @@
 {
     <div>
         @Html.LabelFor(m => m.AthleteID)
-        @Html.TextBoxFor(m => m.AthleteID, new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.AthleteID, new SelectList(ViewBag.Athletes, "AthleteID", "Name"), "Select an Athlete", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.AthleteID, "", new { @class = "text-danger" })
     </div>
     <div>
         @Html.LabelFor(m => m.SportID)
-        @Html.TextBoxFor(m => m.SportID, new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.SportID, new SelectList(ViewBag.Sports, "SportID", "SportName"), "Select a Sport", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.SportID, "", new { @class = "text-danger" })
     </div>
     <div>
         @Html.LabelFor(m => m.MedalType)
-        @Html.TextBoxFor(m => m.MedalType, new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.MedalType, new SelectList(new[] { "Gold", "Silver", "Brown" }), "Select a Medal", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.MedalType, "", new { @class = "text-danger" })
     </div>
     <div>
         @Html.LabelFor(m => m.DateAwarded)
-        @Html.TextBoxFor(m => m.DateAwarded, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.DateAwarded, new { @class = "form-control", type = "date" })
         @Html.ValidationMessageFor(m => m.DateAwarded, "", new { @class = "text-danger" })
     </div>
 
@@ -34,6 +34,10 @@
     </div>
 }
 
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
 

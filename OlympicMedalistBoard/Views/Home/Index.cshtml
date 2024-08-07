@@ -1,8 +1,27 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<OlympicMedalistBoard.Models.HomeViewModel>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Medal Counts by Country</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Country</th>
+            <th>Gold Medals</th>
+            <th>Silver Medals</th>
+            <th>Bronze Medals</th>
+            <th>Total Medals</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var country in Model) {
+            <tr>
+                <td><img src="https://flagsapi.com/@country.CountryCode/flat/32.png"></td>
+                <td>@country.CountryName</td>
+                <td>@country.GoldMedalCount</td>
+                <td>@country.SilverMedalCount</td>
+                <td>@country.BronzeMedalCount</td>
+                <td>@country.TotalMedalCount</td>
+            </tr>
+        }
+    </tbody>
+</table>
