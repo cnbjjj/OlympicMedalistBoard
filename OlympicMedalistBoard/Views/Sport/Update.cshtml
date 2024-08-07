@@ -1,17 +1,14 @@
-﻿@model SportViewModel
+﻿@model OlympicMedalistBoard.Models.SportViewModel;
 
-@{
-    ViewData["Title"] = "Create Sport";
-}
-
-<h2>Create Sport</h2>
+<h2>Edit Sport</h2>
 
 @using (Html.BeginForm())
 {
+    <input type="hidden" name="SportID" value="@Model.SportID" />
     <div>
         @Html.LabelFor(m => m.SportName)
         @Html.TextBoxFor(m => m.SportName)
         @Html.ValidationMessageFor(m => m.SportName, "", new { @class = "text-danger" })
     </div>
-    <button class="btn btn-primary" type="submit">Add</button>
+    <button class="btn btn-primary" asp-action="Update" type="submit">Update</button>
 }

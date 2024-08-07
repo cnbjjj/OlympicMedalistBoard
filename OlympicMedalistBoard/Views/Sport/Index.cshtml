@@ -6,6 +6,7 @@
     <thead>
         <th>Sport ID</th>
         <th>Sport Name</th>
+        <th>Actions</th>
     </thead>
     <tbody>
         @foreach(var sport in Model)
@@ -14,8 +15,8 @@
                 <td>@sport.SportID</td>
                 <td>@sport.SportName</td>
                 <td>
-                    <a class="btn btn-primary" href="@Url.Action("edit")">Edit</a>
-                    <a class="btn btn-danger" href="@Url.Action("delete")">Delete</a>
+                    <a class="btn btn-primary" href="@Url.Action("Update", new { id = sport.SportID })">Edit</a>
+                    <a class="btn btn-danger" href="@Url.Action("Delete",  new { id = sport.SportID })">Delete</a>
                 </td>
             </tr>
         }

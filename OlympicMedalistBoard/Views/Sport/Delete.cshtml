@@ -2,23 +2,11 @@
 
 <h2>Delete Sport</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Sport</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Sport</dt>
-        <dd>@Html.DisplayFor(model => model.SportName)</dd>
-    </dl>
+<h3>Are you sure you want to delete: @Model.SportName </h3>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("ConfirmDelete", "Sport", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.SportID)
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+    <input type="hidden" asp-for="SportID" />
+    <button class="btn btn-primary" asp-action="Index">Back</button>
+    <button class="btn btn-danger" asp-action="Delete"  type="submit">Delete</button>
 }
-
-</div>
