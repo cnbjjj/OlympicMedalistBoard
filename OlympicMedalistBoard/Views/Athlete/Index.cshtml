@@ -19,13 +19,13 @@
                 <b>@Html.DisplayNameFor(model => model.Name)</b>
             </th>
             <th>
-                <b>@Html.DisplayNameFor(model => model.Birthdate)</b>
-            </th>
-            <th>
                 <b>@Html.DisplayNameFor(model => model.Country)</b>
             </th>
             <th>
                 <b>@Html.DisplayNameFor(model => model.Sport)</b>
+            </th>
+            <th>
+                <b>@Html.DisplayNameFor(model => model.Birthdate)</b>
             </th>
             <th>
                 <b>Actions</b>
@@ -46,13 +46,13 @@
                     </div>
                 </td>
                 <td>
-                    @item.Birthdate.ToString("dd/MM/yyyy")
-                </td>
-                <td>
                     @item.Country.CountryName
                 </td>
                 <td>
                     @item.Sport.SportName
+                </td>
+                <td>
+                    @item.Birthdate.ToString("dd/MM/yyyy")
                 </td>
                 <td class="btn-group">
                     <a href="@Url.Action("Edit",new{id=@item.AthleteID})" class="btn btn-outline-success bi bi-pencil"></a>
