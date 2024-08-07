@@ -1,18 +1,24 @@
 ﻿@model CountryViewModel
 
-<h2>Add Country</h2>
+<div class="d-flex d-flex justify-content-center align-items-center pb-4">
+	<h3 class="my-4 text-danger">Countries</h3>
+</div>
 
-@using (Html.BeginForm()) {
-	<div>
-		@Html.LabelFor(m => m.CountryName)
-		@Html.TextBoxFor(m => m.CountryName)
-		@Html.ValidationMessageFor(m => m.CountryName, "", new { @class = "text-danger" })
-	</div>
-	<div>
-		@Html.LabelFor(m => m.CountryCode)
-		@Html.TextBoxFor(m => m.CountryCode)
-		@Html.ValidationMessageFor(m => m.CountryCode, "", new { @class = "text-danger" })
-	</div>
-	<button class="btn btn-primary" type="submit">Add</button>
-	<button class="btn btn-secondary" asp-action="Index">Back</button>
-}
+<div class="d-flex justify-content-center w-100">
+	@using (Html.BeginForm("Create", "Country", FormMethod.Post, new { @class = "w-30" })) {
+		<div class="mb-2">
+			@Html.LabelFor(m => m.CountryName)
+			@Html.TextBoxFor(m => m.CountryName, new { @class = "form-control"})
+			@Html.ValidationMessageFor(m => m.CountryName, "", new { @class = "text-danger" })
+		</div>
+		<div class="mb-2">
+			@Html.LabelFor(m => m.CountryCode)
+			@Html.TextBoxFor(m => m.CountryCode, new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.CountryCode, "", new { @class = "text-danger" })
+		</div>
+		<div class="d-flex mt-5 justify-content-center">
+			<button type="submit" class="btn btn-outline-success sbtn">Add</button>
+			<a class="btn btn-outline-secondary sbtn mx-2" href="@Url.Action("Index")">Cancel</a>
+		</div>
+	}
+</div>

@@ -1,10 +1,13 @@
 ﻿@model List<Country>
 
-<h2>Countries</h2>
+<div class="d-flex d-flex justify-content-center align-items-center position-relative pb-4" style="margin:0 0 40px 0">
+	<h3 class="my-4 text-danger">Countries</h3>
+	<a href="@Url.Action("Create")" class="btn btn-outline-success position-absolute" style="bottom:-20px;"> + </a>
+</div>
 
-<table class="table">
+<table class="table ps-0">
 	<thead>
-		<tr>
+		<tr class="p-3 d-flex mb-2 align-items-center bg-light">
 			<th></th>
 			<th>Name</th>
 			<th>Code</th>
@@ -13,17 +16,15 @@
 	</thead>
 	<tbody>
 		@foreach (var country in Model) {
-			<tr>
+			<tr class="p-3 d-flex align-items-center mb-2">
 				<td><img src="https://flagsapi.com/@country.CountryCode/flat/32.png"></td>
 				<td>@country.CountryName</td>
 				<td>@country.CountryCode</td>
-				<td>
-					<a class="btn btn-primary" href="@Url.Action("Update", new { id = country.CountryID})">Edit</a>
-					<a class="btn btn-danger" href="@Url.Action("Delete", new { id = country.CountryID})">Delete</a>
+				<td class="btn-group">
+					<a class="btn btn-outline-success bi bi-pencil" href="@Url.Action("Update", new { id = country.CountryID})"></a>
+					<a class="btn btn-outline-danger bi bi-trash3" href="@Url.Action("Delete", new { id = country.CountryID})"></a>
 				</td>
 			</tr>
 		}
 	</tbody>
 </table>
-
-<a class="btn btn-success" href="@Url.Action("Create")">Create</a>
