@@ -46,6 +46,22 @@ namespace OlympicMedalistBoard.DAL
                 _context.SaveChanges();
             }
         }
+
+        public List<Medal> GetMedalsBySportId(int id)
+        {
+            return _context.Medals
+                .Include(a => a.Athlete)
+                .Include(a => a.Sport)
+                .Where(a => a.SportID == id).ToList();
+        }
+
+        public List<Medal> GetMedalsByAthleteId(int id)
+        {
+            return _context.Medals
+                .Include(a => a.Athlete)
+                .Include(a => a.Sport)
+                .Where(a => a.AthleteID == id).ToList();
+        }
     }
 }
 

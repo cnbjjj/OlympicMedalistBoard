@@ -38,6 +38,16 @@ namespace OlympicMedalistBoard.BLL
         {
             _medalDAL.DeleteMedal(id);
         }
+
+        public List<Medal> GetMedalsBySportId(int id)
+        {
+            return _medalDAL.GetMedalsBySportId(id);
+        }
+
+        public List<Medal> GetMedalsByAthleteId(int id)
+        {
+            return _medalDAL.GetMedalsByAthleteId(id);
+        }
     }
 }
 

@@ -9,10 +9,16 @@ namespace OlympicMedalistBoard.Controllers
     public class MedalController : Controller
     {
         private readonly MedalService _medalService;
+        private readonly SportService _sportService;
+        private readonly CountryService _countryService;
+        private readonly AthleteService _athleteService;
 
-        public MedalController(MedalService medalService)
+        public MedalController(MedalService medalService, AthleteService athleteService, SportService sportService, CountryService countryService)
         {
             _medalService = medalService;
+            _athleteService = athleteService;
+            _sportService = sportService;
+            _countryService = countryService;
         }
 
         public IActionResult Index()
@@ -33,6 +39,9 @@ namespace OlympicMedalistBoard.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.Sports = _sportService.GetSports();
+            ViewBag.Countries = _countryService.GetCountries();
+            ViewBag.Athletes = _athleteService.GetAthletes();
             return View();
         }
 
@@ -41,35 +50,38 @@ namespace OlympicMedalistBoard.Controllers
         {
             if (ModelState.IsValid)
             {
+                medal.Sport = _sportService.GetSport(medal.SportID);
+                medal.Athlete = _athleteService.GetAthleteById(medal.AthleteID);
                 _medalService.AddMedal(medal);
                 return RedirectToAction("Index");
             }
+            ModelState.AddModelError("", "Invalid data");
+            ViewBag.Sports = _sportService.GetSports();
+            ViewBag.Athlete = _athleteService.GetAthletes();
             return View(medal);
         }
 
         public IActionResult Edit(int id)
         {
             var medal = _medalService.GetMedalById(id);
-            if (medal == null)
-            {
-                return NotFound();
-            }
+            ViewBag.Sports = _sportService.GetSports();
+            ViewBag.Athlete = _athleteService.GetAthletes();
             return View(medal);
         }
 
         [HttpPost]
         public IActionResult Edit(int id, Medal medal)
         {
-            if (id != medal.MedalID)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
+                medal.Sport = _sportService.GetSport(medal.SportID);
+                medal.Athlete = _athleteService.GetAthleteById(medal.AthleteID);
                 _medalService.UpdateMedal(medal);
                 return RedirectToAction("Index");
             }
+            ModelState.AddModelError("", "Invalid data");
+            ViewBag.Sports = _sportService.GetSports();
+            ViewBag.Athlete = _athleteService.GetAthletes();
             return View(medal);
         }
 
