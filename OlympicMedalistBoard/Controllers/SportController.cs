@@ -10,10 +10,14 @@ namespace OlympicMedalistBoard.Controllers
     {
         //[Authorize]
         private readonly SportService _sportService;
+        private readonly AthleteService _athleteService;
+        private readonly MedalService _medalService;
 
-        public SportController (SportService sportService)
+        public SportController (SportService sportService, AthleteService athleteService, MedalService medalService)
         {
             _sportService = sportService;
+            _athleteService = athleteService;
+            _medalService = medalService;
         }
         //[Authorize(Roles = "Admin")]
         public IActionResult Index()
@@ -73,7 +77,12 @@ namespace OlympicMedalistBoard.Controllers
         public IActionResult Delete(int id)
         {
             Sport sport  = _sportService.GetSport(id);
-            _sportService.DeleteSport(sport.SportID);
+            if (sport != null)
+            {
+                _medalService.DeleteMedalsBySportId(sport.SportID);
+                _athleteService.DeleteAthletesBySportId(sport.SportID);
+                _sportService.DeleteSport(sport.SportID);
+            }
             return RedirectToAction("Index");
         }
 

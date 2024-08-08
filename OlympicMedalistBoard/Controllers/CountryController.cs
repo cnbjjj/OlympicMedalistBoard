@@ -8,8 +8,12 @@ namespace OlympicMedalistBoard.Controllers {
 	public class CountryController : Controller {
 
 		private readonly CountryService _countryService;
-		public CountryController(CountryService countryService) {
+		private readonly AthleteService _athleteService;
+		private readonly MedalService _medalService;
+		public CountryController(CountryService countryService, AthleteService athleteService, MedalService medalService) {
 			_countryService = countryService;
+			_athleteService = athleteService;
+			_medalService = medalService;
 		}
 
 		public IActionResult Index() {
@@ -67,6 +71,8 @@ namespace OlympicMedalistBoard.Controllers {
 			var country = _countryService.GetCountry(CountryID);
 
 			if (country != null) {
+				_medalService.DeleteMedalsByCountryId(CountryID);
+				_athleteService.DeleteAthletesByCountryId(CountryID);
 				_countryService.DeleteCountry(CountryID);
 				return RedirectToAction("Index");
 			}

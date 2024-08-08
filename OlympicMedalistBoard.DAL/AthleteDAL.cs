@@ -19,8 +19,10 @@ namespace OlympicMedalistBoard.DAL
         public List<Athlete> GetAthletes()
         {
             return _context.Athletes
+                .AsNoTracking()
                 .Include(a => a.Country)
-                .Include(a => a.Sport).ToList();
+                .Include(a => a.Sport)
+                .ToList();
         }
 
         public Athlete AddAthlete(Athlete athlete)
@@ -39,7 +41,8 @@ namespace OlympicMedalistBoard.DAL
 
         public void DeleteAthlete(Athlete athlete)
         {
-            _context.Athletes.Remove(athlete);
+            //_context.Athletes.Remove(athlete);
+            _context.Entry(athlete).State = EntityState.Deleted;
             _context.SaveChanges();
         }
 
@@ -57,17 +60,21 @@ namespace OlympicMedalistBoard.DAL
         public List<Athlete> GetAthletesByCountryId(int id)
         {
             return _context.Athletes
+                .AsNoTracking()
                 .Include(a => a.Country)
                 .Include(a => a.Sport)
-                .Where(a => a.CountryID == id).ToList();
+                .Where(a => a.CountryID == id)
+                .ToList();
         }
 
         public List<Athlete> GetAthletesBySportId(int id)
         {
             return _context.Athletes
+                .AsNoTracking()
                 .Include(a => a.Country)
                 .Include(a => a.Sport)
-                .Where(a => a.SportID == id).ToList();
+                .Where(a => a.SportID == id)
+                .ToList();
         }
 
         public void DeleteAthletesBySportId(int id)
@@ -79,5 +86,13 @@ namespace OlympicMedalistBoard.DAL
             }
         }
 
+        public void DeleteAthletesByCountryId(int id)
+        {
+            var athletes = GetAthletesByCountryId(id);
+            foreach (var athlete in athletes)
+            {
+                DeleteAthlete(athlete);
+            }
+        }
     }
 }

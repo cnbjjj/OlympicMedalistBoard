@@ -114,6 +114,7 @@ namespace OlympicMedalistBoard.Controllers
         {
             if (athlete != null)
             {
+                _medalService.DeleteMedalsByAthleteId(athlete.AthleteID);
                 _athleteService.DeleteAthlete(athlete);
                 RemovePhoto(athlete);
                 return RedirectToAction("Index");

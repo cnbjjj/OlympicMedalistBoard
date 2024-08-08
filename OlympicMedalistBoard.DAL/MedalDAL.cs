@@ -50,6 +50,7 @@ namespace OlympicMedalistBoard.DAL
         public List<Medal> GetMedalsBySportId(int id)
         {
             return _context.Medals
+                .AsNoTracking()
                 .Include(a => a.Athlete)
                 .Include(a => a.Sport)
                 .Where(a => a.SportID == id).ToList();
@@ -58,9 +59,46 @@ namespace OlympicMedalistBoard.DAL
         public List<Medal> GetMedalsByAthleteId(int id)
         {
             return _context.Medals
+                .AsNoTracking()
                 .Include(a => a.Athlete)
                 .Include(a => a.Sport)
                 .Where(a => a.AthleteID == id).ToList();
+        }
+
+        public void DeleteMedalsByAthleteId(int id)
+        {
+            var medals = GetMedalsByAthleteId(id);
+            foreach (var medal in medals)
+            {
+                DeleteMedal(medal.MedalID);
+            }
+        }
+
+        public void DeleteMedalsBySportId(int id)
+        {
+            var medals = GetMedalsBySportId(id);
+            foreach (var medal in medals)
+            {
+                DeleteMedal(medal.MedalID);
+            }
+        }
+
+        public List<Medal> GetMedalsByCountryId(int id)
+        {
+            return _context.Medals
+                .AsNoTracking()
+                .Include(a => a.Athlete)
+                .Include(a => a.Sport)
+                .Where(a => a.Athlete.CountryID == id).ToList();
+        }
+
+        public void DeleteMedalsByCountryId(int id)
+        {
+            var medals = GetMedalsByCountryId(id);
+            foreach (var medal in medals)
+            {
+                DeleteMedal(medal.MedalID);
+            }
         }
     }
 }
