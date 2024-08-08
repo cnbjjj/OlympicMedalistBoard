@@ -103,5 +103,3 @@ namespace OlympicMedalistBoard.Controllers
         }
     }
 }
-
-
