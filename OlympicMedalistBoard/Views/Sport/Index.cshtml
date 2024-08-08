@@ -3,7 +3,7 @@
     ViewData["Title"] = "Sports";
 }
 <div class="d-flex d-flex justify-content-center align-items-center position-relative pb-4" style="margin:0 0 40px 0">
-    <h3 class="my-4 text-warning">@ViewData["Title"]</h3>
+    <h3 class="my-4 text-success">@ViewData["Title"]</h3>
     <a href="@Url.Action("Create")" class="btn btn-outline-success position-absolute" style="bottom:-20px;"> + </a>
 </div>
 
@@ -22,8 +22,8 @@
                 <td>@sport.SportID</td>
                 <td >@sport.SportName</td>
                 <td>
-                    <a class="btn btn-outline-success bi bi-pencil" href="@Url.Action("Update", new { id = sport.SportID })">Edit</a>
-                    <a class="btn btn-outline-danger bi bi-trash3" href="@Url.Action("Delete",  new { id = sport.SportID })">Delete</a>
+                    <a class="btn btn-outline-success bi bi-pencil" href="@Url.Action("Update", new { id = sport.SportID })"></a>
+                    <a class="btn btn-outline-danger bi bi-trash3" href="@Url.Action("Delete",  new { id = sport.SportID })"></a>
                 </td>
             </tr>
         }

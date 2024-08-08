@@ -26,9 +26,12 @@ public class HomeController : Controller
 				SilverMedalCount = country.Athletes.SelectMany(a => a.Medals).Count(m => m.MedalType == "Silver"),
 				BronzeMedalCount = country.Athletes.SelectMany(a => a.Medals).Count(m => m.MedalType == "Bronze"),
                 TotalMedalCount = country.Athletes.SelectMany(a => a.Medals).Count()
-            }).ToList();
+            }).OrderByDescending(c => c.GoldMedalCount)
+            .ThenByDescending(c => c.SilverMedalCount)
+            .ThenByDescending(c => c.BronzeMedalCount)
+            .ToList();
 
-		return View(countryMedalData);
+        return View(countryMedalData);
 	}
 
 	public IActionResult Privacy()
