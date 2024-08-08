@@ -53,8 +53,6 @@ namespace OlympicMedalistBoard.Controllers
         {
             if (ModelState.IsValid)
             {
-                medal.Sport = _sportService.GetSport(medal.SportID);
-                medal.Athlete = _athleteService.GetAthleteById(medal.AthleteID);
                 _medalService.AddMedal(medal);
                 return RedirectToAction("Index");
             }

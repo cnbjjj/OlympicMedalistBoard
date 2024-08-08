@@ -1,4 +1,5 @@
-﻿using OlympicMedalistBoard.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using OlympicMedalistBoard.Models;
 
 namespace OlympicMedalistBoard.DAL
 {
@@ -11,7 +12,7 @@ namespace OlympicMedalistBoard.DAL
 
         public List<Sport> GetSports()
         {
-            return _context.Sports.ToList();
+            return _context.Sports.AsNoTracking().ToList();
         }
           
         public Sport GetSport(int id)
