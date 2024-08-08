@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OlympicMedalistBoard.BLL;
 using OlympicMedalistBoard.Models;
 
 namespace OlympicMedalistBoard.Controllers
 {
+    [Authorize]
     public class AthleteController : Controller
     {
         private readonly MedalService _medalService;
