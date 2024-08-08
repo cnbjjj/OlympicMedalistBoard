@@ -200,7 +200,7 @@ header {
     margin-top: 25px;
 }
 
-a.navbar-brand {
+header a.navbar-brand {
     display: block;
     height: 120px;
     line-height: 120px;
@@ -211,16 +211,16 @@ a.navbar-brand {
     text-align: center;
 }
 
-.navbar-brand img {
+header .navbar-brand img {
     width: 160px;
     background-color: #fffffa;
 }
 
-.nav-item.dropdown {
+header .nav-item.dropdown {
     width: 18%;
 }
 
-.nav-link.dropdown-toggle {
+header  .nav-link.dropdown-toggle {
     margin: 0;
     padding: 0 20px;
     height: 120px;
@@ -229,6 +229,29 @@ a.navbar-brand {
     width: 200px;
     text-align: center;
     font-weight: 500;
+}
+
+header .dropdown-menu {
+    width: 100%;
+    background: none;
+    border: 0;
+    padding: 20px;
+}
+
+footer .dropdown-menu {
+    width: auto;
+    border: 1px solid var(--bs-grey);
+    padding: 10px 0;
+    text-align: right;
+    background: var(--bs-light);
+    box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transform: translate(-50%, -65px) !important;
+    left: 50% !important;
+}
+
+footer li{
+    line-height:30px;
 }
 
 #MedalDropdown {
@@ -287,17 +310,14 @@ ul[aria-labelledby="CountryDropdown"] .dropdown-item:hover {
     background-color: rgba(var(--bs-danger-rgb),0.1);
 }
 
-.dropdown-menu {
-    width: 100%;
-    background: none;
-    border: 0;
-    padding: 20px;
-}
-
 .form-control {
     background: none;
 }
 
 .form-label[for="Photo"] {
     display: none;
+}
+
+label {
+    margin-bottom: .5rem;
 }

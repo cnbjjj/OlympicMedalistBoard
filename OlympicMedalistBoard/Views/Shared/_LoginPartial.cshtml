@@ -3,29 +3,27 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<ul class="navbar-nav flex-grow-1 gap-4 justify-content-end position-absolute end-0 top-0 d-none">
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-dark bi bi-person-fill" href="#" id="UserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
-        <ul class="dropdown-menu user-dropdown" aria-labelledby="UserDropdown">
-            @if (SignInManager.IsSignedIn(User))
-            {
-                <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Manage">Hi, @UserManager.GetUserName(User)!</a></li>
-                <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Manage">Settings</a></li>
-                <li>
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/" method="post">
-                        <button type="submit" class="dropdown-item">Logout</button>
-                    </form>
-                </li>
-            }
-            else
-            {
-                <li>
-                    <a class="dropdown-item" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                </li>
-            }
-        </ul>
-    </li>
-</ul>
+<div class="dropup dropup-center">
+    <a class="btn dropdown-toggle bi bi-person-fill m-0 pe-0 align-self-center" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+    <ul id="UserDropdown" class="user dropdown-menu" aria-labelledby="UserDropdown" style="left:50%; translateX:-50%;">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li><a class="dropdown-item" href="#">Hi, @UserManager.GetUserName(User)!</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li>
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/" method="post">
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a class="dropdown-item" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+            <li>
+                <a class="dropdown-item" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+        }
+    </ul>
+</div>
