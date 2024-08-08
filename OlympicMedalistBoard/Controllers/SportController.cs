@@ -2,10 +2,12 @@
 //using Microsoft.AspNetCore.Authorization;**-
 using OlympicMedalistBoard.Models;
 using OlympicMedalistBoard.BLL;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace OlympicMedalistBoard.Controllers
 {
+    [Authorize]
     public class SportController : Controller
     {
         //[Authorize]
