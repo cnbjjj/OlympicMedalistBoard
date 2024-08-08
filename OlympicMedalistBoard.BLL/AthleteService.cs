@@ -55,5 +55,10 @@ namespace OlympicMedalistBoard.BLL
         {
             return _athleteDAL.GetAthletesBySportId(id);
         }
+
+        public void DeleteAthletesBySportId(int id)
+        {
+            _athleteDAL.DeleteAthletesBySportId(id);
+        }
     }
 }

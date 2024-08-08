@@ -70,5 +70,14 @@ namespace OlympicMedalistBoard.DAL
                 .Where(a => a.SportID == id).ToList();
         }
 
+        public void DeleteAthletesBySportId(int id)
+        {
+            var athletes = GetAthletesBySportId(id);
+            foreach (var athlete in athletes)
+            {
+                DeleteAthlete(athlete);
+            }
+        }
+
     }
 }

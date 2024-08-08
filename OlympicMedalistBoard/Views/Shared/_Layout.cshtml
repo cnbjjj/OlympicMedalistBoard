@@ -46,15 +46,11 @@
                                     </ul>
                                 </li>
 
-                            <li class="nav-item dropdown d-flex justify-content-center invisible pointer-event" style="width:18%">
-                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="EmptyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-item dropdown d-flex justify-content-center opacity-0" style="width:18%">
+                                    <a class="nav-link dropdown-toggle text-dark" href="/" role="button">
                                         Empty
                                     </a>
-                                <ul class="dropdown-menu" aria-labelledby="EmptyDropdown">
-                                        <li><a class="dropdown-item" asp-area="" asp-controller="Athlete" asp-action="">View All</a></li>
-                                        <li><a class="dropdown-item" asp-area="" asp-controller="Athlete" asp-action="Create">Add New</a></li>
-                                    </ul>
-                                </li>
+                            </li>
 
                             <li class="nav-item dropdown d-flex justify-content-center" style="width:18%">
                                     <a class="nav-link dropdown-toggle text-dark" href="#" id="SportDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -80,7 +76,6 @@
 
                         </div>
 
-                        <partial name="_LoginPartial" />
 @*                     } *@
                 </div>
             </div>
@@ -92,8 +87,10 @@
         </main>
     </div>
     <footer class="border-top footer text-muted">
-        <div class="container d-flex justify-content-center">
-            &copy; 2024
+        <div class="container d-flex justify-content-between">
+            <span class="invisible" style="width:60px"></span>
+            <partial name="_LoginPartial" />
+            <span> &copy; 2024</span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
