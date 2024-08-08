@@ -1,27 +1,34 @@
 ﻿@model List<Sport>
+@{
+    ViewData["Title"] = "Sports";
+}
+<div class="d-flex d-flex justify-content-center align-items-center position-relative pb-4" style="margin:0 0 40px 0">
+    <h3 class="my-4 text-warning">@ViewData["Title"]</h3>
+    <a href="@Url.Action("Create")" class="btn btn-outline-success position-absolute" style="bottom:-20px;"> + </a>
+</div>
 
-<h2>Sport</h2>
-
-<table class="table">
+<table class="table ps-0">
     <thead>
-        <th>Sport ID</th>
-        <th>Sport Name</th>
-        <th>Actions</th>
+        <tr class="p-3 d-flex mb-2 align-items-center bg-light">
+            <th>Sport ID</th>
+            <th>Sport Name</th>
+            <th>Actions</th>
+        </tr>
     </thead>
     <tbody>
         @foreach(var sport in Model)
         {
-            <tr>
+            <tr class="p-3 d-flex align-items-center mb-2">
                 <td>@sport.SportID</td>
-                <td>@sport.SportName</td>
+                <td >@sport.SportName</td>
                 <td>
-                    <a class="btn btn-primary" href="@Url.Action("Update", new { id = sport.SportID })">Edit</a>
-                    <a class="btn btn-danger" href="@Url.Action("Delete",  new { id = sport.SportID })">Delete</a>
+                    <a class="btn btn-outline-success bi bi-pencil" href="@Url.Action("Update", new { id = sport.SportID })">Edit</a>
+                    <a class="btn btn-outline-danger bi bi-trash3" href="@Url.Action("Delete",  new { id = sport.SportID })">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<a class="btn btn-success" href="@Url.Action("create")">Create</a>
+
 
 

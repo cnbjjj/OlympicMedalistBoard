@@ -19,7 +19,7 @@ namespace OlympicMedalistBoard.DAL
             return _context.Sports.Find(id);
         }
 
-        public void AddSport(Sport sport)
+        public void AddSport(Sport sport) 
         {
             _context.Sports.Add(sport);
             _context.SaveChanges();
