@@ -1,4 +1,4 @@
-﻿@model List<Sport>
+﻿@model IEnumerable<OlympicMedalistBoard.Models.Sport>
 @{
     ViewData["Title"] = "Sports";
 }
@@ -10,9 +10,15 @@
 <table class="table ps-0">
     <thead>
         <tr class="p-3 d-flex mb-2 align-items-center bg-light">
-            <th>Sport ID</th>
-            <th>Sport Name</th>
-            <th>Actions</th>
+           <th>
+                <b>@Html.DisplayNameFor(model => model.SportID)</b>
+            </th>
+            <th>
+                <b>@Html.DisplayNameFor(model => model.SportName)</b>
+            </th>
+            <th>
+                <b>Actions</b>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +27,7 @@
             <tr class="p-3 d-flex align-items-center mb-2">
                 <td>@sport.SportID</td>
                 <td >@sport.SportName</td>
-                <td>
+                <td class="btn-group">
                     <a class="btn btn-outline-success bi bi-pencil" href="@Url.Action("Update", new { id = sport.SportID })"></a>
                     <a class="btn btn-outline-danger bi bi-trash3" href="@Url.Action("Delete",  new { id = sport.SportID })"></a>
                 </td>
