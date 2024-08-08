@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace OlympicMedalistBoard.Controllers
 {
-    //[Authorize] 
+    [Authorize]
     public class MedalController : Controller
     {
         private readonly MedalService _medalService;
@@ -27,6 +27,7 @@ namespace OlympicMedalistBoard.Controllers
             return View(medals);
         }
 
+        [Authorize] 
         public IActionResult Details(int id)
         {
             var medal = _medalService.GetMedalById(id);
@@ -37,6 +38,7 @@ namespace OlympicMedalistBoard.Controllers
             return View(medal);
         }
 
+        [Authorize] 
         public IActionResult Create()
         {
             ViewBag.Sports = _sportService.GetSports();
@@ -45,6 +47,7 @@ namespace OlympicMedalistBoard.Controllers
             return View();
         }
 
+        [Authorize] 
         [HttpPost]
         public IActionResult Create(Medal medal)
         {
@@ -61,6 +64,7 @@ namespace OlympicMedalistBoard.Controllers
             return View(medal);
         }
 
+        [Authorize] 
         public IActionResult Edit(int id)
         {
             var medal = _medalService.GetMedalById(id);
@@ -69,6 +73,7 @@ namespace OlympicMedalistBoard.Controllers
             return View(medal);
         }
 
+        [Authorize] 
         [HttpPost]
         public IActionResult Edit(int id, Medal medal)
         {
@@ -85,6 +90,7 @@ namespace OlympicMedalistBoard.Controllers
             return View(medal);
         }
 
+        [Authorize] 
         public IActionResult Delete(int id)
         {
             var medal = _medalService.GetMedalById(id);
@@ -95,6 +101,7 @@ namespace OlympicMedalistBoard.Controllers
             return View(medal);
         }
 
+        [Authorize] 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
