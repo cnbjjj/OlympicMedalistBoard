@@ -19,7 +19,6 @@ namespace OlympicMedalistBoard.DAL
         public List<Athlete> GetAthletes()
         {
             return _context.Athletes
-                .AsNoTracking()
                 .Include(a => a.Country)
                 .Include(a => a.Sport)
                 .ToList();
@@ -39,12 +38,44 @@ namespace OlympicMedalistBoard.DAL
             return athlete;
         }
 
+        //Ensure that the athlete is attached to the context before deleting it
         public void DeleteAthlete(Athlete athlete)
         {
-            //_context.Athletes.Remove(athlete);
-            _context.Entry(athlete).State = EntityState.Deleted;
+            //_context.Entry(athlete).State = EntityState.Deleted;
+            _context.Athletes.Remove(athlete);
             _context.SaveChanges();
         }
+
+        //public void DeleteAthlete(Athlete athlete)
+        //{
+        //    Console.WriteLine($"Attach state: {_context.Entry(athlete).State}");
+        //    var entry = _context.Entry(athlete);
+        //    if (entry.State == EntityState.Detached)
+        //    {
+        //        _context.Attach(athlete);
+        //    }
+        //    _context.Athletes.Remove(athlete);
+        //    _context.SaveChanges();
+        //}
+        //public void DeleteAthlete(Athlete athlete)
+        //{
+        //    Console.WriteLine($"Before DeleteAthlete state: {_context.Entry(athlete).State}");
+        //    var existingEntity = _context.Athletes.Local.FirstOrDefault(a => a.AthleteID == athlete.AthleteID);
+        //    if (existingEntity != null)
+        //    {
+        //        _context.Athletes.Remove(existingEntity);
+        //    }
+        //    else
+        //    {
+        //        var entry = _context.Entry(athlete);
+        //        if (entry.State == EntityState.Detached)
+        //        {
+        //            _context.Attach(athlete);
+        //        }
+        //        _context.Athletes.Remove(athlete);
+        //    }
+        //    _context.SaveChanges();
+        //}
 
         public void DeleteAthleteById(int id)
         {
@@ -60,7 +91,6 @@ namespace OlympicMedalistBoard.DAL
         public List<Athlete> GetAthletesByCountryId(int id)
         {
             return _context.Athletes
-                .AsNoTracking()
                 .Include(a => a.Country)
                 .Include(a => a.Sport)
                 .Where(a => a.CountryID == id)
@@ -70,7 +100,6 @@ namespace OlympicMedalistBoard.DAL
         public List<Athlete> GetAthletesBySportId(int id)
         {
             return _context.Athletes
-                .AsNoTracking()
                 .Include(a => a.Country)
                 .Include(a => a.Sport)
                 .Where(a => a.SportID == id)
@@ -82,7 +111,10 @@ namespace OlympicMedalistBoard.DAL
             var athletes = GetAthletesBySportId(id);
             foreach (var athlete in athletes)
             {
+                var entry = _context.Entry(athlete);
+                Console.WriteLine($"Before Delete: Athlete ID {athlete.AthleteID}, State: {entry.State}");
                 DeleteAthlete(athlete);
+                Console.WriteLine($"After Delete: Athlete ID {athlete.AthleteID}, State: {entry.State}");
             }
         }
 

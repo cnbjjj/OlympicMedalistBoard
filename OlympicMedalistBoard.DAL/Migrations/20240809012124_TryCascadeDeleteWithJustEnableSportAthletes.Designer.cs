@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OlympicMedalistBoard.DAL;
 
@@ -11,9 +12,11 @@ using OlympicMedalistBoard.DAL;
 namespace OlympicMedalistBoard.DAL.Migrations
 {
     [DbContext(typeof(OlympicMedalistBoardDbContext))]
-    partial class OlympicMedalistBoardDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240809012124_TryCascadeDeleteWithJustEnableSportAthletes")]
+    partial class TryCascadeDeleteWithJustEnableSportAthletes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

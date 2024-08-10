@@ -10,9 +10,13 @@ using OlympicMedalistBoard.Models;
 namespace OlympicMedalistBoard.BLL {
 	public class CountryService {
         private readonly CountryDAL _countryDal;
+        private readonly MedalService _medalService;
+        private readonly AthleteService _athleteService;
 
-        public CountryService(CountryDAL countryDal) {
+        public CountryService(CountryDAL countryDal, MedalService medalService, AthleteService athleteService) {
             _countryDal = countryDal;
+            _medalService = medalService;
+            _athleteService = athleteService;
         }
 
         public List<Country> GetCountries() {
@@ -32,6 +36,8 @@ namespace OlympicMedalistBoard.BLL {
         }
 
         public void DeleteCountry(int id) {
+            _medalService.DeleteMedalsByCountryId(id);
+            _athleteService.DeleteAthletesByCountryId(id);
             _countryDal.DeleteCountry(id);
         }
     }

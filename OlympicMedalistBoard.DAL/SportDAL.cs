@@ -12,7 +12,7 @@ namespace OlympicMedalistBoard.DAL
 
         public List<Sport> GetSports()
         {
-            return _context.Sports.AsNoTracking().ToList();
+            return _context.Sports.ToList();
         }
           
         public Sport GetSport(int id)

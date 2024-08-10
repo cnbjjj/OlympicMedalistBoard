@@ -3,6 +3,7 @@
 using OlympicMedalistBoard.Models;
 using OlympicMedalistBoard.BLL;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace OlympicMedalistBoard.Controllers
@@ -12,14 +13,10 @@ namespace OlympicMedalistBoard.Controllers
     {
         //[Authorize]
         private readonly SportService _sportService;
-        private readonly AthleteService _athleteService;
-        private readonly MedalService _medalService;
 
-        public SportController (SportService sportService, AthleteService athleteService, MedalService medalService)
+        public SportController (SportService sportService)
         {
             _sportService = sportService;
-            _athleteService = athleteService;
-            _medalService = medalService;
         }
         //[Authorize(Roles = "Admin")]
         public IActionResult Index()
@@ -81,8 +78,6 @@ namespace OlympicMedalistBoard.Controllers
             Sport sport  = _sportService.GetSport(id);
             if (sport != null)
             {
-                _medalService.DeleteMedalsBySportId(sport.SportID);
-                _athleteService.DeleteAthletesBySportId(sport.SportID);
                 _sportService.DeleteSport(sport.SportID);
             }
             return RedirectToAction("Index");

@@ -13,12 +13,12 @@ namespace OlympicMedalistBoard.Controllers
         private readonly CountryService _countryService;
         private readonly AthleteService _athleteService;
 
-        public MedalController(MedalService medalService, AthleteService athleteService, SportService sportService, CountryService countryService)
+        public MedalController(MedalService medalService, SportService sportService, CountryService countryService, AthleteService athleteService)
         {
             _medalService = medalService;
-            _athleteService = athleteService;
             _sportService = sportService;
             _countryService = countryService;
+            _athleteService = athleteService;
         }
 
         public IActionResult Index()

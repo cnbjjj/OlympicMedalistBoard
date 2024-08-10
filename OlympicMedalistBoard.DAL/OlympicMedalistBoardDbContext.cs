@@ -33,7 +33,7 @@ namespace OlympicMedalistBoard.DAL
                 entity.HasOne(a => a.Sport)
                       .WithMany(s => s.Athletes)
                       .HasForeignKey(a => a.SportID)
-                      .OnDelete(DeleteBehavior.NoAction); 
+                      .OnDelete(DeleteBehavior.Cascade); 
             });
 
             modelBuilder.Entity<Sport>(entity =>

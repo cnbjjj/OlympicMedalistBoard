@@ -114,8 +114,7 @@ namespace OlympicMedalistBoard.Controllers
         {
             if (athlete != null)
             {
-                _medalService.DeleteMedalsByAthleteId(athlete.AthleteID);
-                _athleteService.DeleteAthlete(athlete);
+                _athleteService.DeleteAthleteById(athlete.AthleteID);
                 RemovePhoto(athlete);
                 return RedirectToAction("Index");
             }
@@ -137,7 +136,7 @@ namespace OlympicMedalistBoard.Controllers
             return string.Empty;
         }
 
-        private static void RemovePhoto(Athlete athlete)
+        public static void RemovePhoto(Athlete athlete)
         {
             System.IO.File.Delete(GetPhotoUploadPath(athlete));
         }

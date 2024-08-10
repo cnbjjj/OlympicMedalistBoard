@@ -11,9 +11,11 @@ namespace OlympicMedalistBoard.BLL
     public class AthleteService
     {
         private readonly AthleteDAL _athleteDAL;
-        public AthleteService(AthleteDAL athleteDAL)
+        private readonly MedalService _medalService;
+        public AthleteService(AthleteDAL athleteDAL, MedalService medalService)
         {
             _athleteDAL = athleteDAL;
+            _medalService = medalService;
         }
 
         public List<Athlete> GetAthletes()
@@ -33,11 +35,13 @@ namespace OlympicMedalistBoard.BLL
 
         public void DeleteAthlete(Athlete athlete)
         {
+            _medalService.DeleteMedalsByAthleteId(athlete.AthleteID);
             _athleteDAL.DeleteAthlete(athlete);
         }
 
         public void DeleteAthleteById(int id)
         {
+            _medalService.DeleteMedalsByAthleteId(id);
             _athleteDAL.DeleteAthleteById(id);
         }
 
@@ -58,11 +62,13 @@ namespace OlympicMedalistBoard.BLL
 
         public void DeleteAthletesBySportId(int id)
         {
+            _medalService.DeleteMedalsBySportId(id);
             _athleteDAL.DeleteAthletesBySportId(id);
         }
 
         public void DeleteAthletesByCountryId(int id)
         {
+            _medalService.DeleteMedalsByCountryId(id);
             _athleteDAL.DeleteAthletesByCountryId(id);
         }
     }

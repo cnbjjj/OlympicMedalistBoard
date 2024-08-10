@@ -14,7 +14,7 @@ public class Program
         builder.Services.AddDbContext<OlympicMedalistBoardDbContext>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         });
 
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
