@@ -1,5 +1,5 @@
 # OlympicMedalistBoard
-
+[![Screenshot](screenshot.png?raw=true)](https://github.com/cnbjjj/OlympicMedalistBoard)
 ## About
 This project is an ASP.NET Core MVC application that displays the 
 number of gold, silver, bronze, and total medals won by athletes from 
