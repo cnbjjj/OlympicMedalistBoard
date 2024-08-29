@@ -19,7 +19,8 @@ namespace OlympicMedalistBoard.DAL.Migrations
                 table: "Medals",
                 column: "SportID",
                 principalTable: "Sports",
-                principalColumn: "SportID");
+                principalColumn: "SportID",
+                onDelete: ReferentialAction.NoAction);
         }
 
         /// <inheritdoc />
@@ -35,7 +36,7 @@ namespace OlympicMedalistBoard.DAL.Migrations
                 column: "SportID",
                 principalTable: "Sports",
                 principalColumn: "SportID",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
         }
     }
 }
