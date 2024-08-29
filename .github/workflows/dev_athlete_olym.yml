@@ -1,4 +1,9 @@
 name: Build and deploy ASP.Net Core app to Azure Web App
+
+env:
+  PROJECT_NAME: 'OlympicMedalistBoard'
+  APP_NAME: 'Olym'
+  
 on:
   push:
     branches:
@@ -8,10 +13,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
-    env:
-      PROJECT_NAME: 'OlympicMedalistBoard'
-
     steps:
       - uses: actions/checkout@v4
 
@@ -35,7 +36,7 @@ jobs:
       - name: Apply migrations
         env:
           ConnectionStrings__DefaultConnection: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-        run: dotnet ef database update --startup-project ./OlympicMedalistBoard/OlympicMedalistBoard.csproj --project ./OlympicMedalistBoard.DAL/OlympicMedalistBoard.DAL.csproj
+        run: dotnet ef database update --startup-project ./${{env.PROJECT_NAME}}/${{env.PROJECT_NAME}}.csproj --project ./${{env.PROJECT_NAME}}.DAL/${{env.PROJECT_NAME}}.DAL.csproj
 
       - name: dotnet publish
         run: dotnet publish ./${{env.PROJECT_NAME}}.sln -c Release -o "${{runner.temp}}/${{env.PROJECT_NAME}}"
@@ -53,9 +54,6 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    env:
-      APP_NAME: 'Olym'
 
     steps:
       - name: Download artifact from build job
