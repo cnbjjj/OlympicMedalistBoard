@@ -234,7 +234,8 @@ namespace OlympicMedalistBoard.DAL.Migrations
                         name: "FK_Medals_Sports_SportID",
                         column: x => x.SportID,
                         principalTable: "Sports",
-                        principalColumn: "SportID");
+                        principalColumn: "SportID",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             //migrationBuilder.CreateIndex(
