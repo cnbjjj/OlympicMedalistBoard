@@ -1,4 +1,9 @@
 name: Build and deploy ASP.Net Core app to Azure Web App
+
+env:
+  PROJECT_NAME: 'OlympicMedalistBoard'
+  APP_NAME: 'Olym'
+  
 on:
   push:
     branches:
@@ -8,10 +13,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
-    env:
-      PROJECT_NAME: 'OlympicMedalistBoard'
-
     steps:
       - uses: actions/checkout@v4
 
@@ -53,9 +54,6 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    env:
-      APP_NAME: 'Olym'
 
     steps:
       - name: Download artifact from build job
