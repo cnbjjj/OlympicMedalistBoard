@@ -10,7 +10,6 @@ jobs:
     runs-on: windows-latest
 
     env:
-      APP_NAME: 'Olym'
       PROJECT_NAME: 'OlympicMedalistBoard'
 
     steps:
@@ -49,10 +48,14 @@ jobs:
 
   deploy:
     runs-on: windows-latest
+
     needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    env:
+      APP_NAME: 'Olym'
 
     steps:
       - name: Download artifact from build job
