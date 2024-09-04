@@ -1,5 +1,8 @@
 # OlympicMedalistBoard
-[![Screenshot](screenshot.png?raw=true)](https://olym.azurewebsites.net/)
+<a href="https://olym.azurewebsites.net/" target="_blank">
+    <img src="screenshot.png?raw=true" alt="Screenshot">
+</a>
+
 ## About
 This project is an ASP.NET Core MVC application that displays the 
 number of gold, silver, bronze, and total medals won by athletes from 
@@ -15,13 +18,16 @@ To Make an Acount
 
 To Seed the Database
 1. Open the Database in SQL Server Management Studio
-2. Make a new Querey
+2. Make a new Query
 3. Copy and past the content in the Olympic Medalist Board.sql under 
-OlympicMedalistBoard.DAL into the Queary
-4. Execute the Queary
+OlympicMedalistBoard.DAL into the Query
+4. Execute the Query
+
+Click here to see the [Demo](https://olym.azurewebsites.net/) deployed on Azure.
 
 ## Link
 - [GitHub](https://github.com/cnbjjj/OlympicMedalistBoard)
+- [Azure](https://olym.azurewebsites.net/)
 
 ## Credits
 - [JJ](https://github.com/cnbjjj)
